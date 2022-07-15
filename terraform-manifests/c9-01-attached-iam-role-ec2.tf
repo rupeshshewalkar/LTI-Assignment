@@ -16,7 +16,7 @@ resource "aws_iam_policy" "ec2_policy" {
           "s3:GetBucketLocation"
         ],
         Resource = "arn:aws:s3:::*"
-      },
+    },
       {
         "Effect" : "Allow",
         "Action" : [
@@ -24,7 +24,8 @@ resource "aws_iam_policy" "ec2_policy" {
           "s3:List*"
         ],
         "Resource" : [
-          "${aws_s3_bucket.s3_bucket.arn}/*", "${aws_s3_bucket.s3_bucket.arn}*"
+          "arn:aws:s3:::${ aws_s3_bucket.s3_bucket.id}/*",
+          "arn:aws:s3:::${ aws_s3_bucket.s3_bucket.id }"
         ]
       }
     ]
